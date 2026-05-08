@@ -140,6 +140,11 @@ export const profile = defineType({
       ],
     }),
   ],
-  // Singleton pattern: prevent creating multiple profile documents
-  // In the studio, we'll use a structure builder to enforce this
+  preview: {
+    select: {
+      title: "name",
+      subtitle: "title",
+      media: "avatar",
+    },
+  },
 });
