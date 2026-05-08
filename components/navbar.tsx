@@ -12,8 +12,6 @@ import {
 } from "@/components/ui/sheet";
 import { useState } from "react";
 
-import Image from "next/image";
-
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -26,8 +24,8 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 font-heading font-bold text-xl text-primary">
-          <Image src="/logo.svg" alt="EduManage Logo" width={32} height={32} className="rounded-lg shadow-sm" />
+        <Link href="/" className="flex items-center gap-2 font-heading font-bold text-xl text-primary">
+          <GraduationCap className="w-6 h-6 text-emerald-700 dark:text-emerald-500" />
           <span>EduManage Hub</span>
         </Link>
         
