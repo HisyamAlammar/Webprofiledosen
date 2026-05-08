@@ -14,15 +14,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import { dummyMaterials } from "@/lib/dummyData";
+
 export default function MateriPage() {
-  const materials = [
-    { id: 1, title: "Analisis Kompetitif & Strategi Bertahan", course: "MKM-402", type: "Video", date: "12 Okt 2026", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop", slug: "analisis-kompetitif" },
-    { id: 2, title: "Manajemen Keuangan Lanjutan: Valuasi", course: "MKM-301", type: "Dokumen", date: "05 Okt 2026", image: null, slug: "manajemen-keuangan-valuasi" },
-    { id: 3, title: "Pengantar Manajemen Strategis", course: "MKM-402", type: "Video", date: "28 Sep 2026", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop", slug: "pengantar-manajemen-strategis" },
-    { id: 4, title: "Perilaku Konsumen: Faktor Psikologis", course: "MKT-205", type: "Dokumen", date: "21 Sep 2026", image: null, slug: "perilaku-konsumen-psikologis" },
-    { id: 5, title: "Strategi Pemasaran Digital", course: "MKT-410", type: "Dokumen", date: "14 Sep 2026", image: null, slug: "strategi-pemasaran-digital" },
-    { id: 6, title: "Strategi Tingkat Bisnis", course: "MKM-402", type: "Video", date: "07 Sep 2026", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop", slug: "strategi-tingkat-bisnis" },
-  ];
+  const materials = dummyMaterials;
 
   return (
     <main className="min-h-screen bg-background flex flex-col">
@@ -48,10 +43,8 @@ export default function MateriPage() {
             </div>
             
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="gap-2 py-5 border-border/50 bg-background hover:bg-secondary/50">
-                  <Filter className="w-4 h-4" /> Mata Kuliah
-                </Button>
+              <DropdownMenuTrigger className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input shadow-sm py-5 px-4 bg-background hover:bg-secondary/50 border-border/50">
+                <Filter className="w-4 h-4" /> Mata Kuliah
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>Filter Mata Kuliah</DropdownMenuLabel>
