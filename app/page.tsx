@@ -5,8 +5,18 @@ import { Briefcase, GraduationCap, ArrowRight, Lightbulb, TrendingUp, ShieldChec
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { dummyProfile } from "@/lib/dummyData";
+
+// Helper to map string icon names to Lucide components
+const IconMap: Record<string, React.ReactNode> = {
+  ShieldCheck: <ShieldCheck className="w-7 h-7" />,
+  TrendingUp: <TrendingUp className="w-7 h-7" />,
+  Lightbulb: <Lightbulb className="w-7 h-7" />,
+};
 
 export default function Home() {
+  const { name, title, bio, image, yearsOfExperience, expertise, education, experience } = dummyProfile;
+
   return (
     <main className="min-h-screen bg-background flex flex-col">
       <Navbar />
@@ -23,11 +33,11 @@ export default function Home() {
           </div>
           
           <h1 className="font-heading text-5xl md:text-7xl font-bold text-primary leading-[1.1]">
-            Dr. Budi Santoso, <span className="block text-3xl md:text-5xl text-amber-600 dark:text-amber-500 mt-3 font-medium">S.E., M.M.</span>
+            {name}, <span className="block text-3xl md:text-5xl text-amber-600 dark:text-amber-500 mt-3 font-medium">{title}</span>
           </h1>
           
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-            Spesialisasi dalam Manajemen Strategis, Valuasi Perusahaan, dan Restrukturisasi Bisnis dengan lebih dari 15 tahun pengalaman mengajar dan konsultan praktisi.
+            {bio}
           </p>
           
           <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -43,8 +53,8 @@ export default function Home() {
         <div className="flex-1 w-full max-w-md lg:max-w-lg relative order-1 lg:order-2">
           <div className="aspect-[4/5] relative rounded-3xl overflow-hidden shadow-2xl border-4 border-background">
             <Image
-              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop"
-              alt="Dr. Budi Santoso"
+              src={image}
+              alt={name}
               fill
               className="object-cover"
               priority
@@ -52,7 +62,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
           </div>
           <div className="absolute -bottom-8 -left-8 bg-background p-6 rounded-2xl shadow-xl border border-border/50 hidden md:block">
-            <p className="font-heading font-bold text-primary text-3xl">15+</p>
+            <p className="font-heading font-bold text-primary text-3xl">{yearsOfExperience}</p>
             <p className="text-muted-foreground font-medium">Tahun Pengalaman</p>
           </div>
         </div>
@@ -67,41 +77,23 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="border-none shadow-md hover:shadow-xl transition-all duration-300 bg-background/50 backdrop-blur-sm">
-              <CardContent className="p-8 space-y-4">
-                <div className="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-500 mb-6">
-                  <ShieldCheck className="w-7 h-7" />
-                </div>
-                <h3 className="font-heading text-2xl font-bold text-primary">Manajemen Strategis</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Perumusan taktik kompetitif, analisis industri menggunakan pendekatan Porter, dan eksekusi strategi di era disrupsi digital.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-md hover:shadow-xl transition-all duration-300 bg-background/50 backdrop-blur-sm">
-              <CardContent className="p-8 space-y-4">
-                <div className="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-700 dark:text-emerald-500 mb-6">
-                  <TrendingUp className="w-7 h-7" />
-                </div>
-                <h3 className="font-heading text-2xl font-bold text-primary">Valuasi Keuangan</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Metode penilaian aset perusahaan, analisis DCF (Discounted Cash Flow), dan restrukturisasi finansial korporat.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-md hover:shadow-xl transition-all duration-300 bg-background/50 backdrop-blur-sm">
-              <CardContent className="p-8 space-y-4">
-                <div className="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-700 dark:text-blue-500 mb-6">
-                  <Lightbulb className="w-7 h-7" />
-                </div>
-                <h3 className="font-heading text-2xl font-bold text-primary">Perilaku Konsumen</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Studi tentang psikologi konsumen, pengambilan keputusan pembelian, dan penerapan behavioral economics dalam pemasaran.
-                </p>
-              </CardContent>
-            </Card>
+            {expertise.map((item, index) => {
+              const bgColors = ["bg-amber-100 dark:bg-amber-900/30", "bg-emerald-100 dark:bg-emerald-900/30", "bg-blue-100 dark:bg-blue-900/30"];
+              const textColors = ["text-amber-600 dark:text-amber-500", "text-emerald-700 dark:text-emerald-500", "text-blue-700 dark:text-blue-500"];
+              return (
+                <Card key={item.id} className="border-none shadow-md hover:shadow-xl transition-all duration-300 bg-background/50 backdrop-blur-sm">
+                  <CardContent className="p-8 space-y-4">
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${bgColors[index % bgColors.length]} ${textColors[index % textColors.length]}`}>
+                      {IconMap[item.icon] || <ShieldCheck className="w-7 h-7" />}
+                    </div>
+                    <h3 className="font-heading text-2xl font-bold text-primary">{item.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -121,19 +113,14 @@ export default function Home() {
               </div>
               
               <div className="relative border-l-2 border-emerald-500/20 ml-6 pl-8 space-y-12">
-                <div className="relative">
-                  <div className="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-background border-[4px] border-emerald-500 shadow-sm"></div>
-                  <h4 className="font-heading font-bold text-xl text-primary mb-1">S3 (Doktoral) Ilmu Manajemen</h4>
-                  <p className="text-emerald-700 dark:text-emerald-500 font-semibold mb-3">Universitas Indonesia • 2015 - 2019</p>
-                  <p className="text-muted-foreground">Disertasi berfokus pada adaptasi strategi dan resiliensi perusahaan BUMN di era disrupsi digital.</p>
-                </div>
-                
-                <div className="relative">
-                  <div className="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-background border-[4px] border-emerald-500/50 shadow-sm"></div>
-                  <h4 className="font-heading font-bold text-xl text-primary mb-1">S2 (Magister) Manajemen</h4>
-                  <p className="text-emerald-700/70 dark:text-emerald-500/70 font-semibold mb-3">Universitas Gadjah Mada • 2010 - 2012</p>
-                  <p className="text-muted-foreground">Konsentrasi Manajemen Strategis & Keuangan Korporat. Lulus dengan predikat Cum Laude.</p>
-                </div>
+                {education.map((edu, index) => (
+                  <div key={edu.id} className="relative">
+                    <div className={`absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-background border-[4px] shadow-sm ${index === 0 ? 'border-emerald-500' : 'border-emerald-500/50'}`}></div>
+                    <h4 className="font-heading font-bold text-xl text-primary mb-1">{edu.degree}</h4>
+                    <p className={`font-semibold mb-3 ${index === 0 ? 'text-emerald-700 dark:text-emerald-500' : 'text-emerald-700/70 dark:text-emerald-500/70'}`}>{edu.institution}</p>
+                    <p className="text-muted-foreground">{edu.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -147,19 +134,14 @@ export default function Home() {
               </div>
               
               <div className="relative border-l-2 border-amber-500/20 ml-6 pl-8 space-y-12">
-                <div className="relative">
-                  <div className="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-background border-[4px] border-amber-500 shadow-sm"></div>
-                  <h4 className="font-heading font-bold text-xl text-primary mb-1">Dosen Manajemen</h4>
-                  <p className="text-amber-600 dark:text-amber-500 font-semibold mb-3">Universitas Nasional • 2020 - Sekarang</p>
-                  <p className="text-muted-foreground">Mengampu kelas pascasarjana dan sarjana. Aktif membimbing tesis dan memimpin proyek penelitian tingkat nasional.</p>
-                </div>
-                
-                <div className="relative">
-                  <div className="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-background border-[4px] border-amber-500/50 shadow-sm"></div>
-                  <h4 className="font-heading font-bold text-xl text-primary mb-1">Konsultan Strategi Bisnis</h4>
-                  <p className="text-amber-600/70 dark:text-amber-500/70 font-semibold mb-3">Bina Artha Consulting • 2013 - 2019</p>
-                  <p className="text-muted-foreground">Memberikan advisory terkait restrukturisasi perusahaan, corporate planning, dan valuasi bisnis untuk klien korporasi.</p>
-                </div>
+                {experience.map((exp, index) => (
+                  <div key={exp.id} className="relative">
+                    <div className={`absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-background border-[4px] shadow-sm ${index === 0 ? 'border-amber-500' : 'border-amber-500/50'}`}></div>
+                    <h4 className="font-heading font-bold text-xl text-primary mb-1">{exp.role}</h4>
+                    <p className={`font-semibold mb-3 ${index === 0 ? 'text-amber-600 dark:text-amber-500' : 'text-amber-600/70 dark:text-amber-500/70'}`}>{exp.company}</p>
+                    <p className="text-muted-foreground">{exp.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
