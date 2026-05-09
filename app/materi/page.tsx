@@ -218,11 +218,37 @@ export default function MateriPage() {
                 )}
                 
                 <CardFooter className="mt-auto pt-4 pb-6">
-                  <Link href={`/materi/${materi.slug}`} className="w-full">
-                    <Button className="w-full gap-2 font-medium" variant={materi.type === "Video" ? "default" : "outline"}>
-                      {materi.type === "Video" ? "Mulai Belajar" : "Akses Dokumen"}
-                    </Button>
-                  </Link>
+                  <div className="w-full space-y-3">
+                    {/* File metadata chips for Dokumen type */}
+                    {materi.type === "Dokumen" && (materi.fileExtension || materi.fileSize) && (
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        {materi.fileExtension && (
+                          <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-medium ${
+                            materi.fileExtension === "PDF"
+                              ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+                              : materi.fileExtension === "PPTX" || materi.fileExtension === "PPT"
+                              ? "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400"
+                              : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+                          }`}>
+                            <FileText className="w-3 h-3" />
+                            {materi.fileExtension}
+                          </span>
+                        )}
+                        {materi.fileSize && (
+                          <span className="text-muted-foreground/70">{materi.fileSize}</span>
+                        )}
+                      </div>
+                    )}
+                    <Link href={`/materi/${materi.slug}`} className="w-full block">
+                      <Button className="w-full gap-2 font-medium" variant={materi.type === "Video" ? "default" : "outline"}>
+                        {materi.type === "Video"
+                          ? "Mulai Belajar"
+                          : materi.fileExtension
+                          ? `Akses ${materi.fileExtension}`
+                          : "Akses Dokumen"}
+                      </Button>
+                    </Link>
+                  </div>
                 </CardFooter>
               </Card>
             ))}

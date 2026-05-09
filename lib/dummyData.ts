@@ -9,7 +9,11 @@ export interface Material {
   image?: string | null;
   slug: string;
   description?: string;
+  /** File size string, e.g. "4.2 MB" */
   fileSize?: string;
+  /** File extension, e.g. "PDF", "PPTX" */
+  fileExtension?: string;
+  /** YouTube embed URL for Video type */
   videoUrl?: string;
 }
 
@@ -64,7 +68,8 @@ export const dummyMaterials: Material[] = [
     slug: "analisis-kompetitif",
     description: "Dalam sesi masterclass ini, kita akan membedah secara mendalam studi kasus perusahaan multinasional yang gagal beradaptasi dengan perubahan teknologi, serta membandingkannya dengan perusahaan yang berhasil pivot.",
     videoUrl: "https://www.youtube.com/embed/rzwIWDCKwns",
-    fileSize: "4.2 MB"
+    fileSize: "4.2 MB",
+    fileExtension: "PDF",
   },
   { 
     id: "2", 
@@ -74,7 +79,9 @@ export const dummyMaterials: Material[] = [
     date: "05 Okt 2026", 
     image: null, 
     slug: "manajemen-keuangan-valuasi",
-    description: "Metode penilaian aset keuangan, menghitung cost of capital (WACC), dan analisis risiko investasi korporat."
+    description: "Metode penilaian aset keuangan, menghitung cost of capital (WACC), dan analisis risiko investasi korporat.",
+    fileSize: "3.8 MB",
+    fileExtension: "PDF",
   },
   { 
     id: "3", 
@@ -84,7 +91,8 @@ export const dummyMaterials: Material[] = [
     date: "28 Sep 2026", 
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop", 
     slug: "pengantar-manajemen-strategis",
-    description: "Pemahaman dasar mengenai arah strategis perusahaan dan pentingnya Visi Misi yang solid."
+    description: "Pemahaman dasar mengenai arah strategis perusahaan dan pentingnya Visi Misi yang solid.",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   },
   { 
     id: "4", 
@@ -94,7 +102,9 @@ export const dummyMaterials: Material[] = [
     date: "21 Sep 2026", 
     image: null, 
     slug: "perilaku-konsumen-psikologis",
-    description: "Menganalisis faktor psikologis yang mempengaruhi keputusan pembelian."
+    description: "Menganalisis faktor psikologis yang mempengaruhi keputusan pembelian.",
+    fileSize: "5.1 MB",
+    fileExtension: "PPTX",
   },
   { 
     id: "5", 
@@ -104,7 +114,9 @@ export const dummyMaterials: Material[] = [
     date: "14 Sep 2026", 
     image: null, 
     slug: "strategi-pemasaran-digital",
-    description: "Pendekatan komprehensif dalam pemasaran digital untuk B2B dan B2C."
+    description: "Pendekatan komprehensif dalam pemasaran digital untuk B2B dan B2C.",
+    fileSize: "2.4 MB",
+    fileExtension: "PDF",
   },
   { 
     id: "6", 
@@ -114,7 +126,10 @@ export const dummyMaterials: Material[] = [
     date: "07 Sep 2026", 
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop", 
     slug: "strategi-tingkat-bisnis",
-    description: "Menyelami strategi level bisnis dan penciptaan keunggulan kompetitif berkelanjutan."
+    description: "Menyelami strategi level bisnis dan penciptaan keunggulan kompetitif berkelanjutan.",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    fileSize: "1.9 MB",
+    fileExtension: "PDF",
   },
 ];
 
