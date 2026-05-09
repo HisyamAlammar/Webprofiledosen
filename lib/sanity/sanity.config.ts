@@ -21,7 +21,7 @@ export default defineConfig({
           .items([
             // Singleton: Profile
             S.listItem()
-              .title("Profil Dosen")
+              .title("👨‍🏫 Profil Dosen")
               .id("profile")
               .child(
                 S.document()
@@ -30,8 +30,10 @@ export default defineConfig({
                   .title("Profil Dosen")
               ),
             S.divider(),
-            // Regular: Materi
-            S.documentTypeListItem("materi").title("Materi Kuliah"),
+            // Collection: Mata Kuliah
+            S.documentTypeListItem("mataKuliah").title("📚 Mata Kuliah"),
+            // Collection: Materi
+            S.documentTypeListItem("materi").title("📄 Materi Kuliah"),
           ]),
     }),
   ],
