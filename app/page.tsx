@@ -15,7 +15,7 @@ const IconMap: Record<string, React.ReactNode> = {
 };
 
 export default function Home() {
-  const { name, title, bio, image, yearsOfExperience, expertise, education, experience } = dummyProfile;
+  const { name, title, bio, image, yearsOfExperience, studentsCount, videosCount, caseStudiesCount, expertise, education, experience } = dummyProfile;
 
   return (
     <main className="min-h-screen bg-background flex flex-col">
@@ -50,12 +50,13 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex-1 w-full max-w-md lg:max-w-lg relative order-1 lg:order-2">
-          <div className="aspect-[4/5] relative rounded-3xl overflow-hidden shadow-2xl border-4 border-background">
+        <div className="flex-1 w-full max-w-xs sm:max-w-md lg:max-w-lg relative order-1 lg:order-2">
+          <div className="aspect-square md:aspect-[4/5] relative rounded-3xl overflow-hidden shadow-2xl border-4 border-background">
             <Image
               src={image}
               alt={name}
               fill
+              sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 40vw"
               className="object-cover"
               priority
             />
@@ -64,6 +65,30 @@ export default function Home() {
           <div className="absolute -bottom-8 -left-8 bg-background p-6 rounded-2xl shadow-xl border border-border/50 hidden md:block">
             <p className="font-heading font-bold text-primary text-3xl">{yearsOfExperience}</p>
             <p className="text-muted-foreground font-medium">Tahun Pengalaman</p>
+          </div>
+        </div>
+      </section>
+
+      {/* STATS BAR */}
+      <section className="border-y border-border/50 bg-secondary/20">
+        <div className="container mx-auto px-4 py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 text-center">
+            <div>
+              <p className="font-heading font-bold text-3xl md:text-4xl text-primary">{yearsOfExperience}</p>
+              <p className="text-sm text-muted-foreground mt-1">Tahun Pengalaman</p>
+            </div>
+            <div>
+              <p className="font-heading font-bold text-3xl md:text-4xl text-primary">{studentsCount}</p>
+              <p className="text-sm text-muted-foreground mt-1">Mahasiswa</p>
+            </div>
+            <div>
+              <p className="font-heading font-bold text-3xl md:text-4xl text-primary">{videosCount}</p>
+              <p className="text-sm text-muted-foreground mt-1">Video Pembelajaran</p>
+            </div>
+            <div>
+              <p className="font-heading font-bold text-3xl md:text-4xl text-primary">{caseStudiesCount}</p>
+              <p className="text-sm text-muted-foreground mt-1">Studi Kasus</p>
+            </div>
           </div>
         </div>
       </section>
